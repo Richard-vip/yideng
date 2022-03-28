@@ -18,6 +18,10 @@ function addToArrayForm(num, k) {
   return res;
 }
 
+// 时间复杂度：O(max(n,log k))，其中 n 为数组的长度。
+// 空间复杂度：O(1)。除了返回值以外，使用的空间为常数。
+
+
 /**
  * 手写函数柯里化
  * 
