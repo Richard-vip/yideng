@@ -7,15 +7,15 @@
 
 function addToArrayForm(num, k) {
   const n = num.length;
-  const res = [];
   for (let i = n - 1; i >= 0 || k > 0; --i, k = Math.floor(k / 10)) {
     if (i >= 0) {
       k += num[i];
+      num[i] = k % 10;
+    } else {
+      num.unshift(k % 10);
     }
-    res.push(k % 10);
   }
-  res.reverse();
-  return res;
+  return num;
 }
 // 时间复杂度：O(max(n,log k))，其中 n 为数组的长度。
 // 空间复杂度：O(1)。除了返回值以外，使用的空间为常数。
