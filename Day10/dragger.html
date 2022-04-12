@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 800px;
+        height: 800px;
+        border: 1px solid #ccc;
+        margin: 0 auto;
+        position: relative;
+      }
+      .target {
+        width: 100px;
+        height: 100px;
+        background-color: rgb(245, 230, 99);
+        border: 10px solid rgba(136, 136, 136, 0.5);
+        border-radius: 50%;
+        touch-action: none;
+        user-select: none;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+      .target:active {
+        background-color: rgba(168, 218, 220, 1);
+      }
+      .target:hover {
+        cursor: pointer;
+        border-width: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <div id="target"  class="target"></div>
+    </div>
+  </body>
+  <script>
+    const target = document.querySelector("#target");
+    let Xo,
+      Yo,
+      isActive = false;
+
+    const dragStart = (e) => {
+      Xo = e.clientX - e.target.style.left.slice(0, -2) || 0;
+      Yo = e.clientY - e.target.style.top.slice(0, -2) || 0;
+      isActive = true;
+    };
+
+    const dragMove = (e) => {
+      if (isActive) {
+        e.target.style.left = e.clientX - Xo + "px";
+        e.target.style.top = e.clientY - Yo + "px";
+      }
+    };
+
+    target.addEventListener("mousedown", dragStart);
+    target.addEventListener("mousemove", dragMove);
+
+    target.addEventListener("mouseup", () => {
+      isActive = false;
+    });
+  </script>
+</html>
