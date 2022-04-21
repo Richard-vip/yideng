@@ -7,6 +7,7 @@
     <title>Document</title>
   </head>
   <body>
+    <button id="btn">按钮</button>
     <ul id="box"></ul>
   </body>
   <script>
@@ -17,6 +18,12 @@
     let currentPage = 1;
 
     const ul = document.querySelector("#box");
+
+    const btn = document.querySelector("#btn");
+
+    btn.onclick = () => {
+      alert(1111);
+    };
 
     const render = () => {
       const fragment = document.createDocumentFragment();
@@ -31,7 +38,7 @@
 
       ul.appendChild(fragment);
 
-      if(currentPage < totalPage){
+      if (currentPage < totalPage) {
         window.requestAnimationFrame(render);
       }
     };
