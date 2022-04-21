@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul id="box"></ul>
+  </body>
+  <script>
+    const total = 1000000;
+    const pageSize = 20;
+    const totalPage = Math.ceil(total / pageSize);
+
+    let currentPage = 1;
+
+    const ul = document.querySelector("#box");
+
+    const render = () => {
+      const fragment = document.createDocumentFragment();
+
+      for (let index = 0; index < pageSize; index++) {
+        const element = document.createElement("li");
+        element.innerText = (currentPage - 1) * pageSize + index + 1;
+        fragment.appendChild(element);
+      }
+
+      currentPage++;
+
+      ul.appendChild(fragment);
+
+      if(currentPage < totalPage){
+        window.requestAnimationFrame(render);
+      }
+    };
+
+    render();
+  </script>
+</html>
